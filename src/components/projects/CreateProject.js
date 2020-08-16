@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { createProject } from "../../store/actions/projectActions";
 
-const CreateProject = () => {
+const CreateProject = ({ createProject }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
@@ -14,8 +16,9 @@ const CreateProject = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("title: ", title);
-    console.log("content: ", content);
+    // console.log("title: ", title);
+    // console.log("content: ", content);
+    createProject({ title, content });
   };
 
   return (
@@ -42,4 +45,10 @@ const CreateProject = () => {
   );
 };
 
-export default CreateProject;
+const mapDispatchTopProps = (dispatch) => {
+  return {
+    createProject: (project) => dispatch(createProject(project)),
+  };
+};
+
+export default connect(null, mapDispatchTopProps)(CreateProject);
