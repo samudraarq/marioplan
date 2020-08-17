@@ -4,13 +4,14 @@ const initState = {
     // { id: "2", title: "collect all the stars", content: "blah blah blah" },
     // { id: "3", title: "egg hunt with yoshi", content: "blah blah blah" },
   ],
+  hasProjects: false,
 };
 
 const projectReducer = (state = initState, action) => {
   switch (action.type) {
     case "GET_PROJECTS":
       console.log("Getting projects", action.projects);
-      return { ...state, projects: action.projects };
+      return { ...state, projects: action.projects, hasProjects: true };
     case "CREATE_PROJECT":
       console.log("Created a project", action.project);
       return state;

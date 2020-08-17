@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { createProject } from "../../store/actions/projectActions";
+import { useHistory } from "react-router-dom";
 
 const CreateProject = ({ createProject }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const history = useHistory();
 
   const handleChange = (e) => {
     if (e.target.id === "title") {
@@ -19,6 +21,7 @@ const CreateProject = ({ createProject }) => {
     // console.log("title: ", title);
     // console.log("content: ", content);
     createProject({ title, content });
+    history.push("/");
   };
 
   return (
