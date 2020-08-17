@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Notifications from "./Notifications";
 import ProjectList from "../projects/ProjectList";
 import { connect } from "react-redux";
+import { getProject } from "../../store/actions/projectActions";
 
-function Dashboard({ projects }) {
+function Dashboard({ projects, getProject }) {
+  useEffect(() => {
+    getProject();
+  }, [getProject]);
   return (
     <div className="dashboard container">
       <div className="row">
@@ -24,4 +28,10 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Dashboard);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getProject: () => dispatch(getProject()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
