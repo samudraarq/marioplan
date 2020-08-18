@@ -20,7 +20,7 @@ export const createProject = (project) => {
   };
 };
 
-export const getProject = () => {
+export const getProjects = () => {
   return (dispatch, getState) => {
     db.collection("projects")
       .orderBy("createdAt", "desc")
@@ -31,6 +31,19 @@ export const getProject = () => {
           newProjects.push({ ...doc.data(), id: doc.id });
         });
         dispatch({ type: "GET_PROJECTS", projects: newProjects });
+      });
+  };
+};
+
+export const getProject = (id) => {
+  return (dispatch, getState) => {
+    db.collection("projects")
+      .doc(id)
+      .get()
+      .then((doc) => {
+        // console.log("docuemnt data ", doc.data());
+        const project = doc.data();
+        dispatch({ type: "GET_PROJECT", project });
       });
   };
 };
