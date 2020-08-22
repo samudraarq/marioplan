@@ -9,6 +9,7 @@ export const signIn = (credentials) => {
         const user = firebase.auth().currentUser;
         const userData = {
           email: user.email,
+          uid: user.uid,
         };
         dispatch({ type: "LOGIN_SUCCESS", user: userData });
       })

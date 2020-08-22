@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 function SignedInLinks({ signOut, user }) {
   return (
     <ul className="right">
-      <li>{user && user.email}</li>
       <li>
         <NavLink to="/create">New Project</NavLink>
       </li>

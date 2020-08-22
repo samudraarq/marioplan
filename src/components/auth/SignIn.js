@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { signIn } from "../../store/actions/authActions";
+import { useHistory } from "react-router-dom";
 
 const SignIn = ({ signIn, authError }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const history = useHistory();
 
   const handleChange = (e) => {
     if (e.target.id === "email") {
@@ -19,6 +22,7 @@ const SignIn = ({ signIn, authError }) => {
     // console.log("email: ", email);
     // console.log("password: ", password);
     signIn({ email, password });
+    history.push("/");
   };
 
   return (
